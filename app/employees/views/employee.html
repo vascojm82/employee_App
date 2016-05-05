@@ -1,0 +1,60 @@
+    <div id="myform">
+      <form name="employeeForm" id="employeeForm" class="form-horizontal" role="form">
+        <fieldset id="employeeFieldset">
+            <legend><strong>Employee Information</strong></legend>
+            <br/>
+            <label for="empNumber">Employee Number:</label>
+            <label name="empNumber" ng-model="id" id="empNumber">Some Text</label><br/><br/>
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" name="firstName" ng-model="employee.fname" id="firstName" ng-pattern="/^[a-zA-Z]+$/" required><br/>
+            <div ng-messages="employeeForm.firstName.$error" ng-if="employeeForm.firstName.$touched">
+                <div ng-message="required"><span style="color:red">This field is required.</span></div>
+                <div ng-message="pattern"><span style="color:red">Please enter a valid name.</span></div>
+            </div><br/>
+            <label for="middleName">Middle Name:</label>
+            <input type="text" class="form-control" name="middleName" ng-model="employee.mname" id="middleName" ng-pattern="/^[a-zA-Z]+$/" required><br/>
+            <div ng-messages="employeeForm.middleName.$error" ng-if="employeeForm.middleName.$touched">
+                <div ng-message="required"><span style="color:red">This field is required.</span></div>
+                <div ng-message="pattern"><span style="color:red">Please enter a valid name.</span></div>
+            </div><br/>
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" name="lastName" ng-model="employee.lname" id="lastName" ng-pattern="/^[a-zA-Z ]+$/" required><br/>
+            <div ng-messages="employeeForm.lastName.$error" ng-if="employeeForm.lastName.$touched">
+                <div ng-message="required"><span style="color:red">This field is required.</span></div>
+                <div ng-message="pattern"><span style="color:red">Please enter a valid Lastname.</span></div>
+            </div><br/>
+            <label for="age">Age:</label>
+            <input type="text" class="form-control" name="age" ng-model="employee.age" id="age" ng-pattern="/^[0-9]{1,3}$/" required><br/>
+            <div ng-messages="employeeForm.age.$error" ng-if="employeeForm.age.$touched">
+                <div ng-message="required"><span style="color:red">This field is required.</span></div>
+                <div ng-message="pattern"><span style="color:red">Please enter a valid Age.</span></div>
+            </div><br/>
+            <label for="empDesignation">Designation:</label>
+            <select name="empDesignation" class="form-control" ng-model="employee.designation" id="empDesignation" ng-change="setMinMax(designation)" ng-pattern="/^[a-zA-Z ]+$/" required>
+                <option value="" selected="selected">Select one</option>
+                <option value="Sr. Manager">Senior Manager</option>
+                <option value="Manager">Manager</option>
+                <option value="Asst. Manager">Asst. Manager</option>
+                <option value="Lead">Lead</option>
+                <option value="Snr. Consultant">Senior Consultant</option>
+                <option value="Consultant">Consultant</option>
+            </select><br/>
+            <div ng-messages="employeeForm.empDesignation.$error" ng-if="employeeForm.empDesignation.$touched">
+                <div ng-message="required"><span style="color:red">This field is required.</span></div>
+                <div ng-message="pattern"><span style="color:red">Please select a valid designation.</span></div>
+            </div><br/>
+            <label for="salary">Salary:</label>
+            <input type="text" class="form-control" name="salary" ng-model="employee.salary" id="salary" ng-change="chkSalaryRange(salary)" ng-pattern="/^[0-9]+$/" onblur="" required><br/>
+            <div ng-messages="employeeForm.salary.$error" ng-if="employeeForm.salary.$touched">
+                <div ng-message="required"><span style="color:red">This field is required.</span></div>
+                <div ng-message="pattern"><span style="color:red">Please enter a valid number for salary.</span></div>
+                <div ng-message="range"><span style="color:red">Salary not within range. Min: {{min}}, Max: {{max}}</span></div>
+            </div><br/>
+        </fieldset><br/>
+        <div id="btnSubmit">
+            <input type="submit" class="btn" value="Submit" ng-disabled="!employeeForm.$valid">
+        </div> 
+      </form>
+         
+    </div>
+  
