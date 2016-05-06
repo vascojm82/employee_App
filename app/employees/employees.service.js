@@ -27,9 +27,30 @@ function EmployeesService($http)
         return employee;
     }
     
+    function _deleteEmployee(params)
+    {
+        var result = $http.delete(BASE_URL + 'employees', {params: params} ).then(function(response){
+            return response;
+        });
+        
+        return result;
+    }
+    
+    function _saveEmployee(data)
+    {
+        console.log(data);
+        var result = $http.post(BASE_URL + 'employee', data ).then(function(response){
+            return response;
+        });
+        
+        return result;
+    }
+    
     //Assign API methods to service objects
     employeeService.getEmployees = _getEmployees;
     employeeService.getEmployeeById = _getEmployeeById;
+    employeeService.deleteEmployee = _deleteEmployee;
+    employeeService.saveEmployee = _saveEmployee;
     
     //Make service object accessible to controllers
     return employeeService;

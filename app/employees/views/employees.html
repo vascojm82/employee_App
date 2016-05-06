@@ -1,4 +1,4 @@
-<div id="main" ng-controller="EmployeesController">
+<div id="main">
     
     <div class="table-responsive">
         <table class="table table-bordered">
@@ -31,10 +31,10 @@
             <input type='button' class='btn button-next' name='next' value='Next' />
         </div>
         <div id="buttons" ng-style="setWidth()">
-            <button type="button" class="btn" value="total" ng-click="empCount()">Total Employees</button>
+            <button type="button" class="btn" value="total" ng-click="employeeCount()">Total Employees</button>
             <button type="button" class="btn" value="add" ng-click="goToEmployee()">Add</button>
             <button ng-if="selectedEmployee" type="button" class="btn" value="edit" ng-click="goToEmployee(selectedEmployee.empid)">Edit</button>
-            <button ng-if="selectedEmployee" type="button" class="btn" value="delete" ng-click="empDelete()">Delete</button>
+            <button ng-if="selectedEmployee" type="button" class="btn" value="delete" ng-click="employeeDelete(selectedEmployee.empid)">Delete</button>
         </div>
     </ul>  
 </div>

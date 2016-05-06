@@ -2,10 +2,11 @@ angular.module('employeeApp')
 
 .controller('EmployeesController', ['$scope','$location','EmployeesService', function ($scope,$location,EmployeesService) {
          
+          $scope.count = 0;
           $scope.goToEmployee = goToEmployee;
           $scope.setWidth = setGroupWidth;
-          $scope.employeeCount = empCount;
-          $scope.employeeDelete = empDelete;
+          $scope.employeeCount = employeeCount;
+          $scope.employeeDelete = employeeDelete;
           $scope.selectEmployee = selectEmployee;
     
           activate();
@@ -19,8 +20,8 @@ angular.module('employeeApp')
           function getEmployees()
           {
                 EmployeesService.getEmployees().then(function(response){
-                    
                     $scope.employees = response.data;
+                    $scope.count = response.data.length;
                 })          
           }
     
@@ -47,16 +48,24 @@ angular.module('employeeApp')
           };    
                  
     
-          function empCount(){
-              alert('The total employee count is: ' +  $scope.employeeCount);
+          function employeeCount(){
+              
+              alert('The total employee count is: ' +  $scope.count);
           }; 
-           
-          
-          function empDelete() {
-            var index = $scope.index;
-            $scope.gridOptions.data.splice(index, 1);
-            $scope.employeeCount--;
+              
+    
+          function employeeDelete(employeeId) {  
+            var params = {
+                "employeeId" : employeeId
+            };
+            
+            EmployeesService.deleteEmployee(params).then(function(response){
+                  console.log(response);
+            });
+              
+            $scope.count--;
           };   
+    
     
           function selectEmployee(employee)
           {

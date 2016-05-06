@@ -2,10 +2,11 @@ angular.module('employeeApp')
 
 .controller('EmployeeController',function ($scope, $timeout, $routeParams, EmployeesService) {
        var employeeId = $routeParams.employeeId;
+       
        $scope.setMinMax = setMinMax;
        $scope.chkSalaryRange = chkSalaryRange;
+       $scope.save = save;
            
-       console.log(employeeId);
        $scope.min=0;
        $scope.max=0;
        
@@ -17,9 +18,13 @@ angular.module('employeeApp')
              {
                  console.log("I'm on update mode");
                  getEmployeeById(employeeId);
+                 //EmployeesService.
              }
              else
+             {
                  console.log("I'm on create mode");
+                 //EmployeesService.
+             }
        }
     
        function setMinMax(designation){
@@ -78,4 +83,13 @@ angular.module('employeeApp')
                   $scope.employee = response.data[0];
             });
        } 
+    
+       function save(){
+           var myJSON = '{"_id":"5728ee2c61f89af7afa8807f","empid":"8","fname":"Raul","mname":"Javier","lname":"Jimenez","designation":"Lead","age":24,"salary":55000}';
+           myJSON2 = JSON.parse(myJSON);
+           console.log(myJSON2);
+           EmployeesService.saveEmployee(myJSON2).then(function(response){
+                  console.log(response);
+            });
+       }
   });
