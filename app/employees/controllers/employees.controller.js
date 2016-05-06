@@ -59,12 +59,11 @@ angular.module('employeeApp')
                  
     
           function employeeCount(){
-              
-              alert('The total employee count is: ' +  $scope.count);
+              return $scope.count;
           }; 
               
     
-          function employeeDelete(employeeId) {  
+          function employeeDelete(employeeId,index) {  
             var params = {
                 "employeeId" : employeeId
             };
@@ -74,6 +73,8 @@ angular.module('employeeApp')
             });
               
             $scope.count--;
+              
+            $scope.employees.splice(index, 1);
           };   
     
     

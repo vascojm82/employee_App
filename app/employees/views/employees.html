@@ -31,10 +31,30 @@
             <input type='button' class='btn button-next' name='next' value='Next' />
         </div>
         <div id="buttons" ng-style="setWidth()">
-            <button type="button" class="btn" value="total" ng-click="employeeCount()">Total Employees</button>
+            <button type="button" class="btn" value="total" data-toggle="modal" data-target="#totalEmployees">Total Employees</button>   <!-- Trigger the modal with a button -->          
             <button type="button" class="btn" value="add" ng-click="goToEmployee()">Add</button>
             <button ng-if="selectedEmployee" type="button" class="btn" value="edit" ng-click="goToEmployee(selectedEmployee.empid)">Edit</button>
-            <button ng-if="selectedEmployee" type="button" class="btn" value="delete" ng-click="employeeDelete(selectedEmployee.empid)">Delete</button>
+            <button ng-if="selectedEmployee" type="button" class="btn" value="delete" ng-click="employeeDelete(selectedEmployee.empid,selectedRow)">Delete</button>
         </div>
     </ul>  
+
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="totalEmployees" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Total Employee Count</h4>
+            </div>
+            <div class="modal-body">
+                <p>Total employees: {{employeeCount()}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+         

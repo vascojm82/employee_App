@@ -31,15 +31,6 @@ legend{
 	margin-right: auto;
 }
 
-/*.gridStyle {
-    border: 1px solid rgb(212,212,212);
-	height: 50%;
-}
-
-.grid:hover {
-  cursor: pointer; // cursor: hand; for IE5
-}*/
-
 table, td, th {
 	border:1px solid gray;
 }
