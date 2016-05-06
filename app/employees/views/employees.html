@@ -11,7 +11,7 @@
                 <th>Age</th>
                 <th>Salary</th>
             </tr>
-            <tr class="dataRow" ng-repeat="employee in employees" ng-click="selectEmployee(employee)" >
+            <tr class="dataRow" ng-repeat="employee in employees" ng-click="selectEmployee(employee,$index)" ng-class="{'selected':$index == selectedRow}">
                 <td>{{employee.empid}}</td>
                 <td>{{employee.firstName}}</td>
                 <td>{{employee.middleName}}</td>

@@ -3,6 +3,7 @@ angular.module('employeeApp')
 .controller('EmployeesController', ['$scope','$location','EmployeesService', function ($scope,$location,EmployeesService) {
          
           $scope.count = 0;
+          $scope.selectedRow = null;
           $scope.goToEmployee = goToEmployee;
           $scope.setWidth = setGroupWidth;
           $scope.employeeCount = employeeCount;
@@ -76,9 +77,10 @@ angular.module('employeeApp')
           };   
     
     
-          function selectEmployee(employee)
+          function selectEmployee(employee, index)
           {
-                $scope.selectedEmployee = employee;    
+                $scope.selectedEmployee = employee; 
+                $scope.selectedRow = index;
           }
         
     

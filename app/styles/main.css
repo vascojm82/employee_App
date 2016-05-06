@@ -53,7 +53,7 @@ th{
 	background-color: lightgray;
 }
 
-tr.dataRow:hover, tr.selected {
+tr.dataRow:hover, .selected {
     background-color: darkgray;
     color : #ffd69e
 }
