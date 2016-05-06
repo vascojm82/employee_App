@@ -53,9 +53,14 @@ th{
 	background-color: lightgray;
 }
 
-tr.dataRow:hover, .selected {
+tr.dataRow:hover{
     background-color: darkgray;
-    color : #ffd69e
+    color : white;
+}
+
+.selected {
+    background-color: navy;
+    color : white;
 }
 
 #main{
@@ -66,8 +71,8 @@ tr.dataRow:hover, .selected {
 }
 
 #buttons{
-	width:320px;
-	//width:200px;
+	//width:320px;
+	width:200px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;

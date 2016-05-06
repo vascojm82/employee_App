@@ -1,6 +1,6 @@
 angular.module('employeeApp')
 
-.controller('EmployeeController',function ($scope, $timeout, $routeParams, EmployeesService) {
+.controller('EmployeeController', ['$scope', '$timeout', '$location', '$routeParams' , 'EmployeesService', function ($scope, $timeout, $location, $routeParams, EmployeesService) {
        var employeeId = $routeParams.employeeId;
        
        $scope.setMinMax = setMinMax;
@@ -85,8 +85,17 @@ angular.module('employeeApp')
     
        function save(){
            EmployeesService.saveEmployee($scope.employee).then(function(response){
-                  console.log(response);
+               if(response)
+               {
+                    console.log(response);
+                    console.log("Location: " + $location);
+                    $location.path('/');
+               }
+               else
+               {
+                    console.log("Error!"); 
+               }
             });
        }
     
-  });
+  }]);
