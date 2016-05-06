@@ -8,7 +8,17 @@ angular.module('employeeApp')
           $scope.employeeCount = employeeCount;
           $scope.employeeDelete = employeeDelete;
           $scope.selectEmployee = selectEmployee;
+          $scope.getDesignationName = getDesignation;
     
+          var hashDesignation = {
+                SnrConsultant: "Snr. Consultant",
+                AsstManager: "Asst. Manager",
+                SrManager: "Sr. Manager",
+                Lead: "Lead",
+                Consultant: "Consultant",
+                Manager: "Manager"
+          }
+          
           activate();
     
           function activate()
@@ -30,7 +40,6 @@ angular.module('employeeApp')
                   $location.path('/employee/' + employeeId);
               else
                   $location.path('/employee');
-              //console.log(employeeId);
           }
     
 
@@ -70,5 +79,10 @@ angular.module('employeeApp')
           function selectEmployee(employee)
           {
                 $scope.selectedEmployee = employee;    
+          }
+        
+    
+          function getDesignation(designation){
+                return hashDesignation[designation];
           }
   }]);

@@ -29,32 +29,32 @@ angular.module('employeeApp')
     
        function setMinMax(designation){
          
-         if(designation == 'consultant')
+         if(designation == 'Consultant')
          {
            $scope.min = 30000;
            $scope.max = 35000; 
          }
-         else if(designation == 'srConsultant')
+         else if(designation == 'SnrConsultant')
          {
             $scope.min = 36000;
             $scope.max = 40000;
          }
-         else if(designation == 'lead')
+         else if(designation == 'Lead')
          {
             $scope.min = 41000;
             $scope.max = 45000;
          }
-         else if(designation == 'asstManager')
+         else if(designation == 'AsstManager')
          {
             $scope.min = 46000;
             $scope.max = 50000; 
          }
-         else if(designation == 'manager')
+         else if(designation == 'Manager')
          {
             $scope.min = 51000;
             $scope.max = 55000;
          }
-         else if(designation == 'srManager')
+         else if(designation == 'SrManager')
          {
             $scope.min = 56000;
             $scope.max = 80000;
@@ -79,17 +79,14 @@ angular.module('employeeApp')
             };
             
             EmployeesService.getEmployeeById(params).then(function(response){
-                  console.log(response.data[0]);
                   $scope.employee = response.data[0];
             });
        } 
     
        function save(){
-           var myJSON = '{"_id":"5728ee2c61f89af7afa8807f","empid":"8","fname":"Raul","mname":"Javier","lname":"Jimenez","designation":"Lead","age":24,"salary":55000}';
-           myJSON2 = JSON.parse(myJSON);
-           console.log(myJSON2);
-           EmployeesService.saveEmployee(myJSON2).then(function(response){
+           EmployeesService.saveEmployee($scope.employee).then(function(response){
                   console.log(response);
             });
        }
+    
   });

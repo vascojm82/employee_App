@@ -13,10 +13,10 @@
             </tr>
             <tr class="dataRow" ng-repeat="employee in employees" ng-click="selectEmployee(employee)" >
                 <td>{{employee.empid}}</td>
-                <td>{{employee.fname}}</td>
-                <td>{{employee.mname}}</td>
-                <td>{{employee.lname}}</td>
-                <td>{{employee.designation}}</td>
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.middleName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>{{getDesignationName(employee.designation)}}</td>
                 <td>{{employee.age}}</td>
                 <td>{{employee.salary}}</td>
             </tr>

@@ -40,6 +40,7 @@ function EmployeesService($http)
     {
         console.log(data);
         var result = $http.post(BASE_URL + 'employee', data ).then(function(response){
+            console.log(response);
             return response;
         });
         
