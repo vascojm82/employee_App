@@ -36,9 +36,16 @@ function EmployeesService($http)
         return result;
     }
     
-    function _saveEmployee(data)
+    function _saveEmployee(data,id)
     {
+        console.log('This is the new id: ' + id);
+        if(!data.empid && id)
+        {
+            console.log("I'm in.");
+            data.empid = id;
+        }
         console.log(data);
+        
         var result = $http.post(BASE_URL + 'employee', data ).then(function(response){
             console.log(response);
             return response;

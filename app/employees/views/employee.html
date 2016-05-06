@@ -4,7 +4,7 @@
             <legend><strong>Employee Information</strong></legend>
             <br/>
             <label for="empNumber">Employee Number:</label>
-            <label name="empNumber" ng-model="id" id="empNumber">Some Text</label><br/><br/>
+            <label name="empNumber" ng-model="id" id="empNumber">{{employee.empid}}</label><br/><br/>
             <label for="firstName">First Name:</label>
             <input type="text" class="form-control" name="firstName" ng-model="employee.firstName" id="firstName" ng-pattern="/^[a-zA-Z]+$/" required><br/>
             <div ng-messages="employeeForm.firstName.$error" ng-if="employeeForm.firstName.$touched">

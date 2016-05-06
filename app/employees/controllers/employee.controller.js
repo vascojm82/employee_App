@@ -2,7 +2,8 @@ angular.module('employeeApp')
 
 .controller('EmployeeController', ['$scope', '$timeout', '$location', '$routeParams' , 'EmployeesService', function ($scope, $timeout, $location, $routeParams, EmployeesService) {
        var employeeId = $routeParams.employeeId;
-       
+       var generatedId = null; 
+    
        $scope.setMinMax = setMinMax;
        $scope.chkSalaryRange = chkSalaryRange;
        $scope.save = save;
@@ -23,7 +24,8 @@ angular.module('employeeApp')
              else
              {
                  console.log("I'm on create mode");
-                 //EmployeesService.
+                 $scope.generatedId = generateID();
+                 console.log('This is the new id: ' + $scope.generatedId);
              }
        }
     
@@ -84,11 +86,10 @@ angular.module('employeeApp')
        } 
     
        function save(){
-           EmployeesService.saveEmployee($scope.employee).then(function(response){
+           EmployeesService.saveEmployee($scope.employee,$scope.generatedId).then(function(response){
                if(response)
                {
                     console.log(response);
-                    console.log("Location: " + $location);
                     $location.path('/');
                }
                else
@@ -96,6 +97,13 @@ angular.module('employeeApp')
                     console.log("Error!"); 
                }
             });
+       }
+    
+        
+       function generateID()
+       {
+           var id = "SYN" + Math.random().toString(16).slice(2);
+           return id;
        }
     
   }]);
