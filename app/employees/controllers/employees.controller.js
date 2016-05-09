@@ -79,14 +79,11 @@ angular.module('employeeApp')
             
             EmployeesService.deleteEmployee(params).then(function(response){
                   console.log(response);
-                  console.log(index);
                   var location = ($scope.currentPage * $scope.itemsPerPage) - ($scope.itemsPerPage - index);
                   console.log(location);
                   $scope.emp.splice(location, 1);
                   $scope.employees.splice(index, 1);
                   $scope.count--;
-                  console.log($scope.emp);
-                  console.log($scope.employees);
             });
           };   
     
