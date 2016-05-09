@@ -55,13 +55,11 @@ angular.module('employeeApp')
           function setGroupWidth(){
                 if($scope.selectedRow)
                 {
-                    console.log($scope.selectedRow);
                     var domElem = document.getElementById("buttons");
                     $(domElem).css({"width":"320"});
                 }
                 else
                 {
-                    console.log($scope.selectedRow);
                     var domElem = document.getElementById("buttons");
                     $(domElem).css({"width":"200"});
                 }    
