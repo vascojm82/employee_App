@@ -6,6 +6,7 @@ angular.module('employeeApp')
           $scope.itemsPerPage = 10;
           $scope.currentPage = 1;
           $scope.employees = [];
+          $scope.emp = [];
           $scope.selectedRow = null;
           $scope.goToEmployee = goToEmployee;
           $scope.setWidth = setGroupWidth;
@@ -78,14 +79,15 @@ angular.module('employeeApp')
             
             EmployeesService.deleteEmployee(params).then(function(response){
                   console.log(response);
+                  console.log(index);
+                  var location = ($scope.currentPage * $scope.itemsPerPage) - ($scope.itemsPerPage - index);
+                  console.log(location);
+                  $scope.emp.splice(location, 1);
+                  $scope.employees.splice(index, 1);
+                  $scope.count--;
+                  console.log($scope.emp);
+                  console.log($scope.employees);
             });
-              
-            $scope.count--;
-              
-            $scope.emp.splice(index, 1);
-            $scope.employees.splice(index, 1);
-            console.log($scope.emp);
-            console.log($scope.employees);
           };   
     
     
