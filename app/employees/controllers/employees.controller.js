@@ -53,13 +53,15 @@ angular.module('employeeApp')
     
 
           function setGroupWidth(){
-                if($scope.rowSelected)
+                if($scope.selectedRow)
                 {
+                    console.log($scope.selectedRow);
                     var domElem = document.getElementById("buttons");
                     $(domElem).css({"width":"320"});
                 }
                 else
                 {
+                    console.log($scope.selectedRow);
                     var domElem = document.getElementById("buttons");
                     $(domElem).css({"width":"200"});
                 }    
@@ -82,7 +84,10 @@ angular.module('employeeApp')
               
             $scope.count--;
               
+            $scope.emp.splice(index, 1);
             $scope.employees.splice(index, 1);
+            console.log($scope.emp);
+            console.log($scope.employees);
           };   
     
     
