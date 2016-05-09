@@ -1,0 +1,10 @@
+[{"empid" : "SYN19ceb6388aaf","fname" : "Jose","mname" : "Miguel","lname" : "Vasconcellos","designation" : "Snr. Consultant","age" : "43","salary" : "40000"},
+ {"empid" : "SYN78f1ad710e9d1","fname" : "Daniel","mname" : "Andres","lname" : "Vargas","designation" : "Asst. Manager","age" : "41","salary" : "48000"},
+ {"empid" : "SYNe0a4ddee33326","fname" : "Eduardo","mname" : "Felipe","lname" : "Arreaga","designation" : "Snr. Consultant","age" : "54","salary" : "40000"},
+ {"empid" : "SYN39a6ac5d25224","fname" : "Alavaro","mname" : "Andres","lname" : "Jones","designation" : "Asst. Manager","age" : "55","salary" : "48000"},
+ {"empid" : "SYN34h2ju7y43129","fname" : "Tom","mname" : "Andrew","lname" : "Bernard","designation" : "Manager","age" : "47","salary" : "55000"},
+ {"empid" : "SYN59j1ko4g07542","fname" : "Scott","mname" : "John","lname" : "Meyer","designation" : "Lead","age" : "39","salary" : "45000"},
+ {"empid" : "SYN99d5tf8b49738","fname" : "Hans","mname" : "Dieter","lname" : "Gonzales","designation" : "Asst. Manager","age" : "42","salary" : "48000"},
+ {"empid" : "SYN56v3mn1x77921","fname" : "Raul","mname" : "Javier","lname" : "Jimenez","designation" : "Manager","age" : "24","salary" : "55000"},
+ {"empid" : "SYN12z8lk1q30536","fname" : "Felipe","mname" : "Luis","lname" : "Cassinelli","designation" : "Sr. Manager","age" : "30","salary" : "80000"},
+ {"empid" : "SYN30m3ao9d78201","fname" : "Carlos","mname" : "Andres","lname" : "Del Toro","designation" : "Sr. Manager","age" : "49","salary" : "80000"}]

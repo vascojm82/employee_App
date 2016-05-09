@@ -3,6 +3,9 @@ angular.module('employeeApp')
 .controller('EmployeesController', ['$scope','$location','EmployeesService', function ($scope,$location,EmployeesService) {
          
           $scope.count = 0;
+          $scope.itemsPerPage = 10;
+          $scope.currentPage = 1;
+          $scope.employees = [];
           $scope.selectedRow = null;
           $scope.goToEmployee = goToEmployee;
           $scope.setWidth = setGroupWidth;
@@ -10,6 +13,8 @@ angular.module('employeeApp')
           $scope.employeeDelete = employeeDelete;
           $scope.selectEmployee = selectEmployee;
           $scope.getDesignationName = getDesignation;
+          $scope.previousBatch = previousBatch;
+          $scope.nextBatch = nextBatch;
     
           var hashDesignation = {
                 SnrConsultant: "Snr. Consultant",
@@ -31,10 +36,13 @@ angular.module('employeeApp')
           function getEmployees()
           {
                 EmployeesService.getEmployees().then(function(response){
-                    $scope.employees = response.data;
+                    $scope.emp = response.data;
                     $scope.count = response.data.length;
-                })          
+                    $scope.employees = $scope.emp.slice((($scope.currentPage-1)*$scope.itemsPerPage), (($scope.currentPage)*$scope.itemsPerPage));
+                });      
           }
+          
+          
     
           function goToEmployee(employeeId){
               if(employeeId)
@@ -87,5 +95,28 @@ angular.module('employeeApp')
     
           function getDesignation(designation){
                 return hashDesignation[designation];
+          }
+    
+          function previousBatch()
+          {
+              if($scope.currentPage != 0)
+              {
+                  $scope.currentPage--;
+                  $scope.selectedRow = null;
+                  $scope.employees = $scope.emp.slice((($scope.currentPage-1)*$scope.itemsPerPage), (($scope.currentPage)*$scope.itemsPerPage));
+              }
+          }
+    
+          function nextBatch()
+          {
+              $scope.max = Math.ceil($scope.emp.length / $scope.itemsPerPage);
+              console.log($scope.emp.length + ' / ' + $scope.itemsPerPage + ' = ' + $scope.max);
+              
+              if($scope.currentPage < $scope.max)
+              {
+                  $scope.currentPage++;
+                  $scope.selectedRow = null;
+                  $scope.employees = $scope.emp.slice((($scope.currentPage-1)*$scope.itemsPerPage), (($scope.currentPage)*$scope.itemsPerPage));
+              }
           }
   }]);

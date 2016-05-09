@@ -15,6 +15,7 @@ function EmployeesService($http)
             return response;
         });
         
+        console.log(employees);
         return employees;
     }
     
@@ -44,6 +45,7 @@ function EmployeesService($http)
             console.log("I'm in.");
             data.empid = id;
         }
+        
         console.log(data);
         
         var result = $http.post(BASE_URL + 'employee', data ).then(function(response){
