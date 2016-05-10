@@ -96,10 +96,6 @@ angular.module('employeeApp')
                 
                 if($scope.selectedRow >=0)
                     $scope.RowSelected = true;
-              
-                console.log($scope.selectedEmployee);
-                console.log($scope.selectedRow);
-                console.log($scope.RowSelected);
           }
         
     
