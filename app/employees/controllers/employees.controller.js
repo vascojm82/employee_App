@@ -8,6 +8,7 @@ angular.module('employeeApp')
           $scope.employees = [];
           $scope.emp = [];
           $scope.selectedRow = null;
+          $scope.RowSelected = false;
           $scope.goToEmployee = goToEmployee;
           $scope.setWidth = setGroupWidth;
           $scope.employeeCount = employeeCount;
@@ -54,7 +55,7 @@ angular.module('employeeApp')
     
 
           function setGroupWidth(){
-                if($scope.selectedRow)
+                if($scope.RowSelected)
                 {
                     var domElem = document.getElementById("buttons");
                     $(domElem).css({"width":"320"});
@@ -92,6 +93,13 @@ angular.module('employeeApp')
           {
                 $scope.selectedEmployee = employee; 
                 $scope.selectedRow = index;
+                
+                if($scope.selectedRow >=0)
+                    $scope.RowSelected = true;
+              
+                console.log($scope.selectedEmployee);
+                console.log($scope.selectedRow);
+                console.log($scope.RowSelected);
           }
         
     
@@ -105,6 +113,7 @@ angular.module('employeeApp')
               {
                   $scope.currentPage--;
                   $scope.selectedRow = null;
+                  $scope.RowSelected = false;
                   $scope.employees = $scope.emp.slice((($scope.currentPage-1)*$scope.itemsPerPage), (($scope.currentPage)*$scope.itemsPerPage));
               }
           }
@@ -118,6 +127,7 @@ angular.module('employeeApp')
               {
                   $scope.currentPage++;
                   $scope.selectedRow = null;
+                  $scope.RowSelected = false;
                   $scope.employees = $scope.emp.slice((($scope.currentPage-1)*$scope.itemsPerPage), (($scope.currentPage)*$scope.itemsPerPage));
               }
           }
