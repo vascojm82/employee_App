@@ -31,7 +31,7 @@
             <input type='button' class='btn button-next' name='next' value='Next' ng-click="nextBatch()" ng-disabled="currentPage >= max" />
         </div>
         <div id="buttons" ng-style="setWidth()">
-            <button type="button" class="btn" value="total" data-toggle="modal" data-target="#totalEmployees">Total Employees</button>       
+            <button type="button" class="btn" value="total" data-toggle="modal" data-target="#totalEmployees" ng-click="getEmployeeCount()">Total Employees</button>       
             <button type="button" class="btn" value="add" ng-click="goToEmployee()">Add</button>
             <button ng-if="RowSelected" type="button" class="btn" value="edit" ng-click="goToEmployee(selectedEmployee.empid)">Edit</button>
             <button ng-if="RowSelected" type="button" class="btn" value="delete" ng-click="employeeDelete(selectedEmployee.empid,selectedRow)">Delete</button>
@@ -49,7 +49,7 @@
                 <h4 class="modal-title">Total Employee Count</h4>
             </div>
             <div class="modal-body">
-                <p>Total employees: {{employeeCount()}}</p>
+                <p>Total employees: {{count}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

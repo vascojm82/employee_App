@@ -2,6 +2,7 @@ angular.module('employeeApp')
 
 .controller('EmployeesController', ['$scope','$location','EmployeesService', function ($scope,$location,EmployeesService) {
          
+          var pageSize = 10;
           $scope.count = 0;
           $scope.itemsPerPage = 10;
           $scope.currentPage = 1;
@@ -11,7 +12,7 @@ angular.module('employeeApp')
           $scope.RowSelected = false;
           $scope.goToEmployee = goToEmployee;
           $scope.setWidth = setGroupWidth;
-          $scope.employeeCount = employeeCount;
+          $scope.getEmployeeCount = getEmployeeCount;
           $scope.employeeDelete = employeeDelete;
           $scope.selectEmployee = selectEmployee;
           $scope.getDesignationName = getDesignation;
@@ -37,11 +38,13 @@ angular.module('employeeApp')
     
           function getEmployees()
           {
-                EmployeesService.getEmployees().then(function(response){
-                    $scope.emp = response.data;
-                    $scope.count = response.data.length;
-                    $scope.employees = $scope.emp.slice((($scope.currentPage-1)*$scope.itemsPerPage), (($scope.currentPage)*$scope.itemsPerPage));
-                });      
+                var params = {"currentPage" : $scope.currentPage,
+                              "pageSize" : pageSize};
+              
+                EmployeesService.getEmployees(params).then(function(response){
+                    $scope.employees = response.data;
+                });
+                getEmployeeCount();
           }
           
           
@@ -68,7 +71,13 @@ angular.module('employeeApp')
           };    
                  
     
-          function employeeCount(){
+          function getEmployeeCount(){
+              EmployeesService.getEmployeeCount().then(function(response){
+                  $scope.count = response;
+              }).catch(function(err){
+                  console.log(err);
+              });
+              
               return $scope.count;
           }; 
               
@@ -79,12 +88,9 @@ angular.module('employeeApp')
             };
             
             EmployeesService.deleteEmployee(params).then(function(response){
-                  console.log(response);
-                  var location = ($scope.currentPage * $scope.itemsPerPage) - ($scope.itemsPerPage - index);
-                  console.log(location);
-                  $scope.emp.splice(location, 1);
                   $scope.employees.splice(index, 1);
                   $scope.count--;
+                  getEmployees();
             });
           };   
     
@@ -110,21 +116,21 @@ angular.module('employeeApp')
                   $scope.currentPage--;
                   $scope.selectedRow = null;
                   $scope.RowSelected = false;
-                  $scope.employees = $scope.emp.slice((($scope.currentPage-1)*$scope.itemsPerPage), (($scope.currentPage)*$scope.itemsPerPage));
+                  getEmployees();
               }
           }
     
           function nextBatch()
           {
-              $scope.max = Math.ceil($scope.emp.length / $scope.itemsPerPage);
-              console.log($scope.emp.length + ' / ' + $scope.itemsPerPage + ' = ' + $scope.max);
+              $scope.max = Math.ceil($scope.count / $scope.itemsPerPage);
+              console.log($scope.count + ' / ' + $scope.itemsPerPage + ' = ' + $scope.max);
               
               if($scope.currentPage < $scope.max)
               {
                   $scope.currentPage++;
                   $scope.selectedRow = null;
                   $scope.RowSelected = false;
-                  $scope.employees = $scope.emp.slice((($scope.currentPage-1)*$scope.itemsPerPage), (($scope.currentPage)*$scope.itemsPerPage));
+                  getEmployees();
               }
           }
   }]);

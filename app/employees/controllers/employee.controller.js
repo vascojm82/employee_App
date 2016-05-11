@@ -89,7 +89,6 @@ angular.module('employeeApp')
            EmployeesService.saveEmployee($scope.employee,$scope.generatedId).then(function(response){
                if(response)
                {
-                    console.log(response);
                     $location.path('/');
                }
                else

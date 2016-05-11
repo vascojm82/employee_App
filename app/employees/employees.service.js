@@ -9,14 +9,24 @@ function EmployeesService($http)
     var BASE_URL = 'http://localhost:3000/';
     
     //API methods
-    function _getEmployees()
-    {
-        var employees = $http.get(BASE_URL + 'employees').then(function(response){
+    function _getEmployees(params)
+    { 
+        var employees = $http.get(BASE_URL + 'employees', {params: params} ).then(function(response){
             return response;
         });
         
-        console.log(employees);
         return employees;
+    }
+    
+    function _getEmployeeCount()
+    {
+        var employeeCount = $http.get(BASE_URL + 'employees/recordCount').then(function(response){
+            return response.data.count;
+        }).catch(function(err){
+            console.log("Service error ocurred: ", err );
+        });
+        
+        return employeeCount;
     }
     
     function _getEmployeeById(params)
@@ -39,17 +49,12 @@ function EmployeesService($http)
     
     function _saveEmployee(data,id)
     {
-        console.log('This is the new id: ' + id);
         if(!data.empid && id)
         {
-            console.log("I'm in.");
             data.empid = id;
         }
         
-        console.log(data);
-        
         var result = $http.post(BASE_URL + 'employee', data ).then(function(response){
-            console.log(response);
             return response;
         });
         
@@ -58,6 +63,7 @@ function EmployeesService($http)
     
     //Assign API methods to service objects
     employeeService.getEmployees = _getEmployees;
+    employeeService.getEmployeeCount = _getEmployeeCount;
     employeeService.getEmployeeById = _getEmployeeById;
     employeeService.deleteEmployee = _deleteEmployee;
     employeeService.saveEmployee = _saveEmployee;
