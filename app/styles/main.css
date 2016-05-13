@@ -54,6 +54,11 @@ tr.dataRow:hover{
     color : white;
 }
 
+.none{
+    background-color: white;
+    color : black;
+}
+
 #main{
 	width:70%;
 	display: block;

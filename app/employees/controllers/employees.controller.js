@@ -18,6 +18,8 @@ angular.module('employeeApp')
           $scope.getDesignationName = getDesignation;
           $scope.previousBatch = previousBatch;
           $scope.nextBatch = nextBatch;
+          $scope.delete = false;
+          //$scope.max = 1;
     
           var hashDesignation = {
                 SnrConsultant: "Snr. Consultant",
@@ -41,10 +43,14 @@ angular.module('employeeApp')
                 var params = {"currentPage" : $scope.currentPage,
                               "pageSize" : pageSize};
               
+                console.log(params);
                 EmployeesService.getEmployees(params).then(function(response){
                     $scope.employees = response.data;
+                    if($scope.employees.length <1)
+                      previousBatch();
                 });
                 getEmployeeCount();
+                console.log($scope.max);
           }
           
           
@@ -91,18 +97,42 @@ angular.module('employeeApp')
                   $scope.employees.splice(index, 1);
                   $scope.count--;
                   getEmployees();
+                  $scope.delete = true;
             });
           };   
     
     
-          function selectEmployee(employee, index)
+          function selectEmployee(employee, index, operation)
           {
                 $scope.selectedEmployee = employee; 
+                var old_index = $scope.selectedRow;
                 $scope.selectedRow = index;
                 
-                if($scope.selectedRow >=0)
-                    $scope.RowSelected = true;
+                if(operation == 'select')
+                {
+                    if($scope.selectedRow >=0)
+                    {
+                        $scope.RowSelected = true;
+                        $scope.delete= false;
+                    }
+                }
+                else if(operation == 'deselect')
+                {
+                    if(index == old_index)
+                    {    
+                        $scope.RowSelected = false;   
+                        $scope.selectedRow = -1;
+                        $scope.delete= false;
+                    }
+                    else
+                    {
+                        selectEmployee(employee, index, 'select');
+                    }
+                }
           }
+    
+          
+       
         
     
           function getDesignation(designation){
@@ -127,10 +157,10 @@ angular.module('employeeApp')
               
               if($scope.currentPage < $scope.max)
               {
-                  $scope.currentPage++;
-                  $scope.selectedRow = null;
-                  $scope.RowSelected = false;
-                  getEmployees();
+                   $scope.currentPage++;
+                   $scope.selectedRow = null;
+                   $scope.RowSelected = false;
+                   getEmployees();
               }
           }
   }]);

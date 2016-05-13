@@ -6,11 +6,10 @@ angular.module('employeeApp')
     
        $scope.setMinMax = setMinMax;
        $scope.chkSalaryRange = chkSalaryRange;
-       $scope.save = save;
-           
+       $scope.save = save;  
        $scope.min=0;
        $scope.max=0;
-       
+    
        activate(employeeId);
        
        function activate(employeeId)
@@ -62,7 +61,8 @@ angular.module('employeeApp')
             $scope.max = 80000;
          }
          console.log('min: '+ $scope.min + '  max: ' + $scope.max);
-       
+         console.log($scope.employee.salary);
+         chkSalaryRange($scope.employee.salary);
        }
        
        function chkSalaryRange(salary){
@@ -104,5 +104,4 @@ angular.module('employeeApp')
            var id = "SYN" + Math.random().toString(16).slice(2);
            return id;
        }
-    
   }]);
