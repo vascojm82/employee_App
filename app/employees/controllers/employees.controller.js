@@ -7,7 +7,7 @@ angular.module('employeeApp')
           $scope.itemsPerPage = 10;
           $scope.currentPage = 1;
           $scope.employees = [];
-          $scope.emp = [];
+          //$scope.emp = [];
           $scope.selectedRow = null;
           $scope.RowSelected = false;
           $scope.goToEmployee = goToEmployee;
