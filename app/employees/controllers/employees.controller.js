@@ -7,7 +7,6 @@ angular.module('employeeApp')
           $scope.itemsPerPage = 10;
           $scope.currentPage = 1;
           $scope.employees = [];
-          //$scope.emp = [];
           $scope.selectedRow = null;
           $scope.RowSelected = false;
           $scope.goToEmployee = goToEmployee;
@@ -19,7 +18,6 @@ angular.module('employeeApp')
           $scope.previousBatch = previousBatch;
           $scope.nextBatch = nextBatch;
           $scope.delete = false;
-          //$scope.max = 1;
     
           var hashDesignation = {
                 SnrConsultant: "Snr. Consultant",
